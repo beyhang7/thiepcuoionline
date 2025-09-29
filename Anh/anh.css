@@ -1,0 +1,130 @@
+/* Album */
+.love-album {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 10px;
+  text-align: center;
+}
+.love-album h2 {
+  font-size: 4rem;
+  margin-bottom: 30px;
+  color: blue-gray;
+}
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 cột để hỗ trợ cả grid2 và grid3 */
+  gap: 15px;
+}
+
+/* Ảnh chung */
+.album-grid img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  cursor: pointer;
+
+  /* Hiệu ứng mặc định */
+  animation: blink 2s ease-in-out infinite;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Hiệu ứng nức nhô khi hover */
+.album-grid img:hover {
+  transform: scale(1.1); /* nức nhô hơn */
+  box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+  z-index: 2;
+}
+
+/* Nhịp nháy lệch nhau */
+.album-grid img:nth-child(2n) { animation-delay: 0.3s; }
+.album-grid img:nth-child(3n) { animation-delay: 0.6s; }
+.album-grid img:nth-child(4n) { animation-delay: 0.9s; }
+
+/* 2 ảnh phủ hết (2 ảnh cạnh nhau chiếm 3 cột mỗi cái) */
+.album-grid img.small { grid-column: span 2; }
+
+/* Ảnh to phủ hết (full 6 cột) */
+.album-grid img.big { grid-column: span 6; }
+
+/* 3 ảnh */
+.album-grid img.grid2 { grid-column: span 2; }
+
+/* 2 ảnh */
+.album-grid img.grid3 { grid-column: span 3; }
+
+/* Hiệu ứng slide */
+.album-grid img.effect-slide-left  { transform: translateX(-120px) scale(0.9); opacity: 0; }
+.album-grid img.effect-slide-right { transform: translateX(120px) scale(0.9); opacity: 0; }
+.album-grid img.show {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+}
+
+/* Lightbox */
+.photo-lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.photo-lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  animation: zoomIn 0.4s ease;
+}
+@keyframes zoomIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* Nút đóng */
+.photo-lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.photo-lightbox .close:hover { color: #ff4d6d; }
+
+/* Khi hover: phóng to nhẹ, nổi bật */
+.album-grid img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease; /* chuyển mượt */
+}
+
+/* Hover: phóng to nhẹ + bóng */
+.album-grid img:hover {
+  transform: scale(1.015); /* phóng ra vừa phải */
+  box-shadow: 0 0 20px rgba(0,0,0,0.25); /* bóng mềm mại */
+  z-index: 2; /* nổi trên các ảnh khác */
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  .love-album {
+    margin-bottom: 18px;
+  }
+  .love-album h2 {
+    font-size: 2.5rem;
+    margin: 10px auto;
+    background: none;
+  }
+  .album-grid { grid-template-columns: repeat(6, 1fr); gap: 5px; }
+  .album-grid img.small { grid-column: span 2; }
+  .album-grid img.big   { grid-column: span 6; }
+  .album-grid img.grid2 { grid-column: span 2; }
+  .album-grid img.grid3 { grid-column: span 3; }
+  .love-album h2 { font-size: 1.8rem; }
+}

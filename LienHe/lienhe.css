@@ -1,0 +1,197 @@
+/* ==== Khung lớn ==== */
+.container-card-contact {
+  margin: 2px auto 0;
+  width: 1024px;
+  padding: 10px 60px;
+  background: rgba(51, 49, 49, 0.892);
+  text-align: center;
+}
+
+.container-card-contact .section-title {
+  font-size: 50px;
+  color: #fff;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.container-card-contact .section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #fff;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.contact-card h3, .founder-info h3, .founder-info p  {
+  color: #fff;
+}
+
+/* ==== Layout 2 cột ==== */
+.info-section-contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ==== Contact Card ==== */
+.contact-card,
+.founder-card {
+  background: none;
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-info {
+  text-align: left;
+  color: #fff;
+}
+
+.contact-card h3,
+.founder-card h3 {
+  font-size: 25px;
+  color: blue-gray;
+  border-bottom: 1px solid #fff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.contact-info p {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.contact-info strong {
+  color: #fff;
+}
+
+/* ==== Founder Card ==== */
+.founder-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+
+.founder-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: contain;  
+  border: 1px solid #fff; 
+  background-color: #fff; 
+}
+
+
+.founder-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.founder-role {
+  font-size: 15px;
+  font-style: italic;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.founder-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #fff;
+}
+
+/* Link trang trí */
+.contact-link {
+  color: #d87d9a; /* màu hồng nhẹ nhàng */
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hover: nổi bật */
+.contact-link:hover {
+  color: #ffabc1;
+  text-shadow: 1px 1px 4px rgba(255, 182, 193, 0.6);
+}
+
+/* Hover underline effect */
+.contact-link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ffabc1;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+.contact-link:hover::after {
+  width: 100%;
+}
+
+
+/* ==== Responsive ==== */
+/* ==== Responsive ==== */
+@media (max-width: 768px) {
+  /* Khung chính */
+  .container-card-contact {
+    width: 100%;          /* chiếm toàn màn hình */
+    padding: 20px 15px;   /* giảm padding */
+  }
+
+  .container-card-contact .section-title {
+    font-size: 32px;      /* nhỏ hơn */
+    margin-bottom: 24px;
+  }
+
+  .container-card-contact .section-title::after {
+    width: 60px;          /* thu nhỏ gạch chân */
+  }
+
+  /* Layout 1 cột */
+  .info-section-contact {
+    grid-template-columns: 1fr; /* chỉ còn 1 cột */
+    gap: 0px;
+  }
+
+  /* Card */
+  .contact-card,
+  .founder-card {
+    padding: 10px;
+    margin: auto;
+  }
+
+  /* Avatar founder */
+  .founder-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Founder info sắp xếp dọc */
+  .founder-inner {
+    text-align: center;
+    gap: 25px;
+  }
+
+  .founder-name {
+    font-size: 18px;
+  }
+
+  .founder-info h3{
+    font-size: 18px;
+  }
+
+  /* Text trong contact-info */
+  .contact-info p {
+    font-size: 1rem;
+    margin: 0;
+  }
+}

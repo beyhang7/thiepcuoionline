@@ -1,0 +1,281 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Playfair Display', serif;
+}
+
+body {
+  background: #fff;
+  color: #5a4b4b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Giới hạn 1024px */
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 0 20px rgba(235, 196, 196, 0.737);
+}
+
+/* Curtain mở màn */
+.curtain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 9999;
+}
+.curtain {
+  flex: 1;
+  background: #d4a5a5;
+  transition: transform 1.5s ease-in-out;
+}
+.curtain-left { transform: translateX(0); }
+.curtain-right { transform: translateX(0); }
+.curtain.open-left { transform: translateX(-100%); }
+.curtain.open-right { transform: translateX(100%); }
+.invitation-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 6cqi;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Scroll icon */
+.scroll-down {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10000;
+}
+.scroll-down span {
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  border-radius: 50%;
+  background: #b87a7a;
+  animation: scroll 1.5s infinite;
+}
+.scroll-down span:nth-child(2) { animation-delay: 0.3s; }
+@keyframes scroll {
+  0% { opacity: 0; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(10px); }
+  100% { opacity: 0; transform: translateY(20px); }
+}
+
+
+
+/* Header */
+header {
+  width: 100%;
+  max-width: 1024px;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  /* Nền nhẹ sang trọng */
+  background: #fffefc;
+  position: relative;
+  z-index: 1;
+
+  /* Bóng ngoài */
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.invitation-title {
+  font-size: 7rem;
+  margin-bottom: 40px;
+  color: #5a4b4b;
+  text-shadow: 3px 3px 10px rgba(197, 192, 192, 0.3);
+  animation: fadeInDown 1.5s ease;
+}
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo */
+.logo-diagonal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+  margin-bottom: 30px;
+}
+.logo-diagonal .line1,
+.logo-diagonal .line3 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #5a4b4b;
+}
+
+/* Trái tim */
+/* .heart {
+  width: 30px;
+  height: 30px;
+  background-color: #d95d5d;
+  transform: rotate(45deg);
+  position: relative;
+  animation: pulse 1.5s infinite;
+}
+.heart::before,
+.heart::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  background-color: #d95d5d;
+  border-radius: 50%;
+  position: absolute;
+}
+.heart::before { top: -15px; left: 0; }
+.heart::after { top: 0; left: -15px; }
+@keyframes pulse {
+  0%, 100% { transform: rotate(45deg) scale(1); }
+  50% { transform: rotate(45deg) scale(1.2); }
+} */
+
+/* Ảnh chính */
+.photo-section { 
+  display: flex; 
+  justify-content: center; 
+  margin: 0; 
+}
+.photo-gallery { 
+  display: flex; 
+  justify-content: center; 
+  width: 100%; 
+}
+.photo-item img {
+  width: 100%;
+  max-width: 900px;  
+  height: auto;     
+}
+
+/* Slogan */
+.slogan {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: #5a4b4b;
+  text-align: center;
+  margin: 20px auto 0;
+  line-height: 1.6;
+  max-width: 750px;  /* Bằng với ảnh */
+  background: linear-gradient(135deg, #b87a7a, #d9a7a7);
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 6px rgba(184, 122, 122, 0.2);
+  animation: fadeInUp 2s ease;
+}
+
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+
+.slogan strong {
+  display: block;
+  margin-top: 15px;
+  font-size: 1.8rem;
+  font-family: 'Playfair Display', serif;
+  color: #5a4b4b;
+}
+
+/* Hiệu ứng xuất hiện */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+  body {
+    line-height: 1.4;
+    padding: 0 10px;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .invitation-text {
+    font-size: 1rem; /* Nhỏ hơn cho vừa màn hình */
+  }
+
+  header {
+    padding: 2rem 0.5rem;
+  }
+
+  .invitation-title {
+    font-size: 2.5rem; /* Giảm từ 6rem xuống 3rem */
+    margin-bottom: 30px;
+  }
+
+  .logo-diagonal .line1,
+  .logo-diagonal .line3 {
+    font-size: 1.5rem; /* Nhỏ hơn trên mobile */
+  }
+
+  .heart {
+    width: 25px;
+    height: 25px;
+  }
+  .heart::before,
+  .heart::after {
+    width: 25px;
+    height: 25px;
+  }
+
+  .photo-section {
+    flex-direction: column; /* Chuyển thành dọc */
+    align-items: center;
+  }
+
+  .photo-item img {
+    max-width: 98%; /* Chiếm gần hết màn hình */
+    height: auto; /* Giữ tỉ lệ */
+  }
+
+  .scroll-down {
+    bottom: 10px;
+  }
+  .scroll-down span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .slogan {
+    font-size: 1rem; 
+    line-height: 1.4;
+  }
+
+  .slogan strong {
+    font-size: 1.1rem; 
+}
+
+

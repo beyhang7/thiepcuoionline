@@ -1,0 +1,319 @@
+/* Font chữ toàn bộ thiệp */
+body {
+  font-family: 'Roboto', serif;
+}
+
+
+/* Nút mở thiệp */
+#openBtn {
+  position: relative;
+  display: block;
+  margin: 50px auto;
+  padding: 20px 40px;
+  font-size: clamp(1rem, 3.8vw, 2rem);
+  font-weight: bold;
+  color: blue-gray;
+  background: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(146, 141, 142, 0.71);
+  transition: all 0.3s ease;
+  font-family: 'Playfair Display', serif;
+}
+
+#openBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(255, 143, 163, 0.6);
+}
+
+/* Màn hình phủ */
+.invite-section {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 246, 246, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  z-index: 999;
+;
+}
+
+.invite-section.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Thiệp */
+.invite-card {
+  background: #fff;
+  padding: 40px 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+
+.invite-section.active .invite-card {
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+
+/* Nội dung thiệp */
+.invite-card h1 {
+  font-size: 6rem;
+  color: blue-gray;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family: 'Playfair Display', serif;
+}
+
+.invite-card .subtitle {
+  font-size: clamp(2rem, 3vw, 1.3rem);
+  color: blue-gray;
+  margin-bottom: 5px;
+}
+
+.center-block #guestText {
+  font-style: italic;
+  margin-bottom: 10px;
+  text-decoration:  underline 1px dashed #8a6e6e ;
+}
+
+.photo-block {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.photo-block img {
+  max-width: 600px;   
+  height: auto;
+  transition: transform 0.3s ease;
+  margin-bottom: 0;
+}
+
+.center-block, .location, .parents, .time, .calendar-wrapper, .date-block {
+  font-family: 'Calibri', sans-serif;
+}
+
+.center-block {
+  font-size: clamp(2rem, 3.3vw, 2.1rem);
+  color:  blue-gray;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.calendar-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.date-block {
+  border: hsl(0, 80%, 58%) 1px dashed;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: clamp(2rem, 3.3vw, 1.2rem);
+  color: blue-gray;
+  font-style: italic;
+}
+
+.date-block strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 40px;
+
+}
+
+.location {
+  margin: 30px auto;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: blue-gray;
+}
+
+.time {
+  font-size: 1.5rem;
+  color: blue-gray;
+  font-weight: bold;
+}
+
+
+
+.parents {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 0px;
+}
+
+.parents div { 
+  padding: 15px 20px;
+  font-size: 2rem;
+  color: blue-gray;
+  text-align: center;  
+}
+
+.parent-title {
+  font-weight: bold;
+  font-size: 2rem;
+  color: #d46a6a;
+  margin-bottom: 10px;
+}
+
+
+.footer {
+  font-style: italic;
+  color: blue-gray;
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+/* Nút đóng */
+.close-btn {
+  margin-top: 40px;
+  padding: 10px 20px;
+  font-size: clamp(1.5rem, 3vw, 1.5rem);
+  box-shadow: 0 8px 22px rgba(255, 118, 136, 0.6);
+  font-weight: bold;
+  color: #444;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.close-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 8px 22px rgba(255, 118, 136, 0.6);
+}
+
+
+
+/* Responsive cho điện thoại 768px */
+@media (max-width: 768px) {
+  .invite-card::before {
+    padding: 4px; 
+  }
+
+  /* Nút mở thiệp */
+  #openBtn {
+    margin: 30px auto;
+    padding: 10px 20px;
+    font-size: clamp(1rem, 2vw, 1rem);
+    box-shadow: 0 0 15px rgba(146, 141, 142, 0.71);
+  }
+    
+
+  /* Tiêu đề */
+  .info-form h2 {
+    font-size: 1.6rem;
+  }
+
+  /* Input + Select */
+  .info-form input,
+  .info-form select {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  .label {
+    font-size: 1rem;
+  }
+
+  .radio-group {
+    display: grid;
+    grid-template-columns: repeat(4fr, 1fr);
+    padding: 10px 0;
+    margin: 5px 0;
+    gap: 5px;
+    font-size: 0.6rem;
+  }
+  /* Nút xác nhận */
+  #confirmBtn {
+    font-size: 1rem;
+  }
+
+
+
+  /* Nội dung thiệp */
+  .invite-card {
+    transform: scale(0.8); /* Thu nhỏ toàn bộ thiệp */
+    transform-origin: top center; /* Giữ căn giữa khi thu nhỏ */
+    padding: 25px 15px;
+    width: auto; /* Để auto, không bị ép */
+  }  
+ 
+  .invite-card h1 {
+    font-size: clamp(2.5rem, 5vw, 2.2rem);
+  }
+
+  .invite-card .subtitle {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: blue-gray;
+    font-weight: bold;
+  }
+
+  .photo-block img {
+    max-width: 300px;   
+    height: auto;
+    transition: transform 0.3s ease;
+    margin-bottom: 0;
+  }
+  .date-block strong {
+    font-size: 25px;
+
+  }
+  .center-block {
+    font-size: clamp(1rem, 3.3vw, 1.2rem);
+  }
+
+  .time {
+    font-size: clamp(1rem, 3.3vw, 1.2rem);
+  }
+
+
+  .date-block {
+    font-size: clamp(1rem, 3.3vw, 1.2rem);
+  }
+
+  .location {
+    font-size: clamp(1rem, 3.3vw, 1.2rem);
+    margin: 10px auto;
+  }
+  .parents {
+    gap: 0px;
+  }
+
+  .parents div {
+    font-size: clamp(1rem, 2.3vw, 2rem);
+  }
+
+  .parent-title {
+    font-size: 1rem;
+  }
+
+
+  .footer {
+    font-size: clamp(1rem, 3.3vw, 1.2rem);
+  }
+
+  /* Nút đóng */
+  .close-btn {
+    margin-top: 20px;
+    padding: 8px 10px;
+    font-size: clamp(0.8rem, 3.3vw, 1.2rem);
+
+  }
+
+}

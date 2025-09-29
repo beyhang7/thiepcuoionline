@@ -1,0 +1,159 @@
+.bride-groom-section {
+  position: relative; /* quan trọng để ::before bám theo */
+  padding: 20px;
+  width: 100%;
+  background: linear-gradient(135deg, #fff, #f9f9f9);
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+
+  /* Bóng ngoài */
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  margin-bottom: 40px;
+}
+
+
+
+.main-photo img {
+  width: 100%;
+  max-width: 900px;
+  margin: 30px 0;
+  height: auto;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.main-photo img:hover {
+  transform: scale(1.02);
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #444;
+  margin: 1rem 0 1rem;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, hsl(340, 2%, 36%), #2f2d2d);
+  left: 30%;
+  bottom: -10px;
+  border-radius: 5px;
+}
+
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px 0;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.photo {
+  flex: 1 1 42%;
+  max-width: 440px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo img {
+  width: 100%;
+  display: block;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+
+.photo:hover {
+  transform: translateY(-8px);
+}
+
+.photo:hover img {
+  transform: scale(1.05);
+}
+
+/* Lightbox nền tối */
+.lightbox {
+  display: none; 
+  position: fixed;
+  z-index: 9999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.85);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Ảnh trong Lightbox */
+.lightbox-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  animation: zoomIn 0.3s ease;
+}
+
+/* Nút đóng */
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.lightbox .close:hover {
+  color: #ff6f61;
+}
+
+/* Hiệu ứng */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes zoomIn {
+  from {transform: scale(0.8);}
+  to {transform: scale(1);}
+}
+
+
+/* Responsive cho điện thoại*/
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin: 1rem 0 1.5rem;
+  }
+  .main-photo img {
+    max-width: 100%;
+    margin: auto;
+  }
+  .photo {
+    max-width: 50%;
+  }
+  .photo-grid {
+    margin: auto;
+    gap: 1rem;
+  }
+  .title::after {
+    left: 50%;
+    height: 1px;
+  }
+
+}
+
