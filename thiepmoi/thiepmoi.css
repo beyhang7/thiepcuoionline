@@ -200,120 +200,91 @@ body {
 
 
 
-/* Responsive cho điện thoại 768px */
+/* Responsive cho màn hình nhỏ hơn hoặc bằng 768px */
 @media (max-width: 768px) {
-  .invite-card::before {
-    padding: 4px; 
-  }
 
   /* Nút mở thiệp */
   #openBtn {
-    margin: 30px auto;
-    padding: 10px 20px;
-    font-size: clamp(1rem, 2vw, 1rem);
-    box-shadow: 0 0 15px rgba(146, 141, 142, 0.71);
-  }
-    
-
-  /* Tiêu đề */
-  .info-form h2 {
-    font-size: 1.6rem;
-  }
-
-  /* Input + Select */
-  .info-form input,
-  .info-form select {
-    width: 90%;
+    margin: 20px auto;
+    padding: 12px 18px;
     font-size: 1rem;
+    box-shadow: 0 0 12px rgba(146, 141, 142, 0.5);
   }
 
-  .label {
-    font-size: 1rem;
-  }
-
-  .radio-group {
-    display: grid;
-    grid-template-columns: repeat(4fr, 1fr);
-    padding: 10px 0;
-    margin: 5px 0;
-    gap: 5px;
-    font-size: 0.6rem;
-  }
-  /* Nút xác nhận */
-  #confirmBtn {
-    font-size: 1rem;
-  }
-
-
-
-  /* Nội dung thiệp */
+  /* Thiệp */
   .invite-card {
-    transform: scale(0.8); /* Thu nhỏ toàn bộ thiệp */
-    transform-origin: top center; /* Giữ căn giữa khi thu nhỏ */
-    padding: 25px 15px;
-    width: auto; /* Để auto, không bị ép */
-  }  
- 
+    padding: 20px 12px;
+    width: 95%;
+    max-width: 380px;
+    transform: scale(0.5);      /* Không thu nhỏ quá */
+    transform-origin: center; /* Giữ căn giữa */
+  }
+
   .invite-card h1 {
-    font-size: clamp(2.5rem, 5vw, 2.2rem);
+    font-size: 2rem;
+    margin-bottom: 10px;
   }
 
   .invite-card .subtitle {
-    font-size: clamp(1rem, 3vw, 1.3rem);
-    color: blue-gray;
+    font-size: 0.8rem;
     font-weight: bold;
   }
 
+
+  /* Hình ảnh */
   .photo-block img {
-    max-width: 300px;   
-    height: auto;
-    transition: transform 0.3s ease;
-    margin-bottom: 0;
+    max-width: 75%;
   }
-  .date-block strong {
-    font-size: 25px;
 
-  }
+  /* Nội dung chính */
   .center-block {
-    font-size: clamp(1rem, 3.3vw, 1.2rem);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 5px;
   }
 
-  .time {
-    font-size: clamp(1rem, 3.3vw, 1.2rem);
-  }
-
-
+  .time,
   .date-block {
-    font-size: clamp(1rem, 3.3vw, 1.2rem);
+    font-size: 0.8rem;
+    margin: 0 auto;
+    padding: 5px 40px;
   }
 
-  .location {
-    font-size: clamp(1rem, 3.3vw, 1.2rem);
-    margin: 10px auto;
+  .location{
+    font-size: 0.8rem;
+    margin: auto;
   }
+
+  .date-block strong {
+    font-size: 0.8rem;
+  }
+
+  /* Phụ huynh */
   .parents {
+    align-items: center;
     gap: 0px;
+    margin: 0 0 0 5px;
   }
 
   .parents div {
-    font-size: clamp(1rem, 2.3vw, 2rem);
+    font-size: 0.8rem;
   }
 
   .parent-title {
-    font-size: 1rem;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
   }
 
-
+  /* Footer */
   .footer {
-    font-size: clamp(1rem, 3.3vw, 1.2rem);
+    font-size: 0.6rem;
+    margin-top: 0px;
   }
 
   /* Nút đóng */
   .close-btn {
-    margin-top: 20px;
-    padding: 8px 10px;
-    font-size: clamp(0.8rem, 3.3vw, 1.2rem);
-
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 0.8rem;
   }
-
 }

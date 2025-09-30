@@ -37,7 +37,7 @@ body {
 }
 .curtain {
   flex: 1;
-  background: #d4a5a5;
+  background: hwb(318 83% 4%);
   transition: transform 1.5s ease-in-out;
 }
 .curtain-left { transform: translateX(0); }
@@ -81,6 +81,13 @@ body {
   100% { opacity: 0; transform: translateY(20px); }
 }
 
+.scroll-down.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+
 
 
 /* Header */
@@ -92,17 +99,11 @@ header {
   flex-direction: column;
   align-items: center;
   text-align: center;
-
-  /* Nền nhẹ sang trọng */
   background: #fffefc;
   position: relative;
   z-index: 1;
-
-  /* Bóng ngoài */
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
 }
-
-
 
 .invitation-title {
   font-size: 7rem;
@@ -131,31 +132,6 @@ header {
   color: #5a4b4b;
 }
 
-/* Trái tim */
-/* .heart {
-  width: 30px;
-  height: 30px;
-  background-color: #d95d5d;
-  transform: rotate(45deg);
-  position: relative;
-  animation: pulse 1.5s infinite;
-}
-.heart::before,
-.heart::after {
-  content: "";
-  width: 30px;
-  height: 30px;
-  background-color: #d95d5d;
-  border-radius: 50%;
-  position: absolute;
-}
-.heart::before { top: -15px; left: 0; }
-.heart::after { top: 0; left: -15px; }
-@keyframes pulse {
-  0%, 100% { transform: rotate(45deg) scale(1); }
-  50% { transform: rotate(45deg) scale(1.2); }
-} */
-
 /* Ảnh chính */
 .photo-section { 
   display: flex; 
@@ -181,21 +157,12 @@ header {
   text-align: center;
   margin: 20px auto 0;
   line-height: 1.6;
-  max-width: 750px;  /* Bằng với ảnh */
+  max-width: 750px;
   background: linear-gradient(135deg, #b87a7a, #d9a7a7);
   -webkit-background-clip: text;
   text-shadow: 2px 2px 6px rgba(184, 122, 122, 0.2);
   animation: fadeInUp 2s ease;
 }
-
-
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(50px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-
-
 .slogan strong {
   display: block;
   margin-top: 15px;
@@ -203,16 +170,14 @@ header {
   font-family: 'Playfair Display', serif;
   color: #5a4b4b;
 }
-
-/* Hiệu ứng xuất hiện */
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(50px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-
-
-/* Responsive cho điện thoại */
+/* ============================= */
+/* Responsive cho màn hình ≤768px */
+/* ============================= */
 @media (max-width: 768px) {
   body {
     line-height: 1.4;
@@ -221,10 +186,12 @@ header {
 
   .container {
     padding: 1rem;
+    box-shadow: none; /* Bỏ shadow trên mobile cho nhẹ */
   }
 
   .invitation-text {
-    font-size: 1rem; /* Nhỏ hơn cho vừa màn hình */
+    font-size: 2rem;
+    text-align: center;
   }
 
   header {
@@ -232,33 +199,26 @@ header {
   }
 
   .invitation-title {
-    font-size: 2.5rem; /* Giảm từ 6rem xuống 3rem */
-    margin-bottom: 30px;
+    font-size: 2.5rem; 
+    margin-bottom: 20px;
   }
 
+  .logo-diagonal {
+    gap: 15px;
+    margin-bottom: 20px;
+  }
   .logo-diagonal .line1,
   .logo-diagonal .line3 {
-    font-size: 1.5rem; /* Nhỏ hơn trên mobile */
-  }
-
-  .heart {
-    width: 25px;
-    height: 25px;
-  }
-  .heart::before,
-  .heart::after {
-    width: 25px;
-    height: 25px;
+    font-size: 1.5rem; 
   }
 
   .photo-section {
-    flex-direction: column; /* Chuyển thành dọc */
+    flex-direction: column; 
     align-items: center;
   }
-
   .photo-item img {
-    max-width: 98%; /* Chiếm gần hết màn hình */
-    height: auto; /* Giữ tỉ lệ */
+    max-width: 100%;
+    height: auto;
   }
 
   .scroll-down {
@@ -272,10 +232,9 @@ header {
   .slogan {
     font-size: 1rem; 
     line-height: 1.4;
+    padding: 0 10px;
   }
-
   .slogan strong {
     font-size: 1.1rem; 
+  }
 }
-
-

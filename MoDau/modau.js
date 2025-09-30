@@ -28,3 +28,27 @@ submitBtn.addEventListener('click', () => {
   // Ẩn form sau khi nhập
   document.querySelector('.name-input-section').style.display = 'none';
 });
+
+
+const scrollIcon = document.querySelector(".scroll-down");
+
+window.addEventListener("scroll", () => {
+  const scrollPos = window.scrollY + window.innerHeight;
+  const pageHeight = document.documentElement.scrollHeight;
+
+  if (pageHeight - scrollPos <= 50) {
+    scrollIcon.classList.add("hidden");
+  } else {
+    scrollIcon.classList.remove("hidden");
+    scrollIcon.style.display = "flex"; // hiện lại nếu scroll lên
+  }
+});
+
+// Khi transition kết thúc thì mới display none
+scrollIcon.addEventListener("transitionend", () => {
+  if (scrollIcon.classList.contains("hidden")) {
+    scrollIcon.style.display = "none";
+  }
+});
+
+

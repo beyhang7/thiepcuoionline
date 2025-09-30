@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Tạo Thiệp Mời</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="info-form" id="infoForm">
+    <h2>Nhập thông tin khách mời</h2>
+
+    <input type="text" id="guestName" placeholder="Nhập tên khách" required>
+
+    <div class="form-group">
+      <p class="label">Em gọi là gì?</p>
+      <label><input type="radio" name="relation" value="Bạn"> Bạn</label>
+      <label><input type="radio" name="relation" value="Anh"> Anh</label>
+      <label><input type="radio" name="relation" value="Chị"> Chị</label>
+      <label><input type="radio" name="relation" value="Em"> Em</label>
+      <label><input type="radio" name="relation" value="Chú"> Chú</label>
+      <label><input type="radio" name="relation" value="Cô"> Cô</label>
+      <label><input type="radio" name="relation" value="Cậu"> Cậu</label>
+      <label><input type="radio" name="relation" value="Gì"> Gì</label>
+    </div>
+
+    <div class="form-group">
+      <p class="label">Khách mời có gì chưa?</p>
+      <label><input type="radio" name="partner" value=" + Vợ"> Vợ</label>
+      <label><input type="radio" name="partner" value=" + Chồng"> Chồng</label>
+      <label><input type="radio" name="partner" value=" + Người yêu"> NY</label>
+    </div>
+
+    <button id="confirmBtn">Tạo Link Thiệp Mời</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById("confirmBtn").addEventListener("click", function() {
+      const name = document.getElementById("guestName").value.trim();
+      const relation = document.querySelector("input[name='relation']:checked")?.value || "";
+      const partner = document.querySelector("input[name='partner']:checked")?.value || "";
+
+      if (!name) {
+        alert("Vui lòng nhập tên khách!");
+        return;
+      }
+
+      // Ghép thông tin khách
+      const fullName = relation + " " + name + partner;
+
+      // Tạo link (thiệp.html là file thiệp chính)
+      const url = `${window.location.origin}/?guest=${encodeURIComponent(fullName)}`;
+
+      document.getElementById("result").innerHTML = `
+        <div class="result-item">
+          <p>Link dành cho khách <b>${fullName}</b>:</p>
+          <a href="${url}" target="_blank">${url}</a>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

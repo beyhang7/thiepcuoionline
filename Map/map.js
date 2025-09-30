@@ -1,7 +1,7 @@
     document.addEventListener("DOMContentLoaded", () => {
-      const lat = 21.85863;
-      const lng = 102.68104;
-      const address = "Gia đình nhà gái";
+      const lat = 22.00909;
+      const lng = 102.78409;
+      const address = "Gia đình nhà trai";
 
       // Khởi tạo bản đồ
       const map = L.map("map").setView([lat, lng], 18); // zoom 18 mới thấy nhà cửa
