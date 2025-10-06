@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="Map/map.css">
   <link rel="stylesheet" href="CamOn/camon.css">
   <link rel="stylesheet" href="LienHe/lienhe.css">
+  <link rel="stylesheet" href="xacnhan/xacnhan.css">
 
   <!-- Font chữ -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -203,6 +204,35 @@
     </main>
 
 
+    <!-- ************************************************* -->
+    <!--*************** XÁC NHẬN & LỜI CHÚC ***************-->
+    <section class="confirm-wish-section">
+      <h2 class="section-title">💌 Xác Nhận Tham Gia & Gửi Lời Chúc 💌</h2>
+
+      <div class="form-wrapper">
+        <!-- Form xác nhận -->
+        <form id="confirmForm" class="card-form">
+          <h3>✅ Xác nhận tham dự</h3>
+          <label>
+            <input type="radio" name="confirm" value="yes" required /> Tôi sẽ tham dự
+          </label><br>
+          <label>
+            <input type="radio" name="confirm" value="no" required /> Tôi xin phép không tham dự
+          </label>
+          <button type="submit">Gửi xác nhận</button>
+          <div id="confirmMessage" class="message"></div>
+        </form>
+
+        <!-- Form lời chúc -->
+        <form id="wishForm" class="card-form">
+          <h3>💖 Gửi lời chúc</h3>
+          <textarea id="message" name="message" required placeholder="Nhập lời chúc của bạn..."></textarea>
+          <button type="submit">Gửi lời chúc</button>
+          <div id="wishMessage" class="message"></div>
+        </form>
+      </div>
+    </section>
+
     <!-- *************************************************** -->
     <!--********************** Bản Đồ *********************-->
     <h2>📍 Địa điểm tổ chức</h2>
@@ -290,7 +320,6 @@
     document.getElementById("guestText").textContent = guest;
   </script>
 
-  <script src="../admin.js" defer></script>
   <script src="MoDau/modau.js"></script>
   <script src="thiepmoi/thiepmoi.js"></script>
   <script src="ShowAnh/showanh.js"></script>
@@ -298,6 +327,7 @@
   <script src="Anh/anh.js"></script>
   <script src="YeuThuong/yeuthuong.js"></script>
   <script src="Map/map.js"></script>
+  <script src="xacnhan/xacnhan.js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 </html>

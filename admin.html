@@ -3,17 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Tạo Thiệp Mời</title>
+  <title>Admin - Quản lý Thiệp Mời</title>
   <link rel="stylesheet" href="admin.css">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #fafafa;
+      color: #333;
+    }
+    h2 {
+      color: #c2185b;
+      margin-bottom: 10px;
+    }
+    .info-form, .rsvp-list {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .label {
+      font-weight: bold;
+    }
+    label {
+      margin-right: 10px;
+    }
+    button {
+      background-color: #c2185b;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background-color: #ad1457;
+    }
+    #result {
+      margin-top: 15px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px 15px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .result-item {
+      margin-bottom: 10px;
+    }
+    .rsvp-list table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    .rsvp-list th, .rsvp-list td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    .rsvp-list th {
+      background-color: #f06292;
+      color: white;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- =================== PHẦN 1: TẠO LINK THIỆP MỜI =================== -->
   <div class="info-form" id="infoForm">
-    <h2>Nhập thông tin khách mời</h2>
+    <h2>🎉 Nhập thông tin khách mời</h2>
 
     <input type="text" id="guestName" placeholder="Nhập tên khách" required>
 
     <div class="form-group">
-      <p class="label">Em gọi là gì?</p>
+      <p class="label">Quan hệ với chú rể?</p>
       <label><input type="radio" name="relation" value="Bạn"> Bạn</label>
       <label><input type="radio" name="relation" value="Anh"> Anh</label>
       <label><input type="radio" name="relation" value="Chị"> Chị</label>
@@ -21,7 +95,9 @@
       <label><input type="radio" name="relation" value="Chú"> Chú</label>
       <label><input type="radio" name="relation" value="Cô"> Cô</label>
       <label><input type="radio" name="relation" value="Cậu"> Cậu</label>
-      <label><input type="radio" name="relation" value="Gì"> Gì</label>
+      <label><input type="radio" name="relation" value="Dì"> Dì</label>
+      <label><input type="radio" name="relation" value="Mợ"> Mợ</label>
+      <label><input type="radio" name="relation" value="Bác"> Bác</label>
     </div>
 
     <div class="form-group">
@@ -29,14 +105,34 @@
       <label><input type="radio" name="partner" value=" + Vợ"> Vợ</label>
       <label><input type="radio" name="partner" value=" + Chồng"> Chồng</label>
       <label><input type="radio" name="partner" value=" + Người yêu"> NY</label>
+      <label><input type="radio" name="partner" value=" "> Chưa</label>
     </div>
 
     <button id="confirmBtn">Tạo Link Thiệp Mời</button>
+    <div id="result"></div>
   </div>
 
-  <div id="result"></div>
+  <!-- =================== PHẦN 2: DANH SÁCH KHÁCH PHẢN HỒI =================== -->
+  <div class="rsvp-list">
+    <h2>📋 Danh sách khách xác nhận & lời chúc</h2>
+    <table id="rsvpTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tên</th>
+          <th>Tham dự</th>
+          <th>Lời chúc</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button id="refreshBtn">🔄 Làm mới danh sách</button>
+    <button id="exportBtn">📦 Xuất Excel</button>
+  </div>
 
+  <!-- =================== SCRIPT =================== -->
   <script>
+    // === PHẦN 1: TẠO LINK THIỆP MỜI ===
     document.getElementById("confirmBtn").addEventListener("click", function() {
       const name = document.getElementById("guestName").value.trim();
       const relation = document.querySelector("input[name='relation']:checked")?.value || "";
@@ -47,11 +143,8 @@
         return;
       }
 
-      // Ghép thông tin khách
       const fullName = relation + " " + name + partner;
-
-      // Tạo link (thiệp.html là file thiệp chính)
-      const url = `${window.location.origin}/?guest=${encodeURIComponent(fullName)}`;
+      const url = `${window.location.origin}/index.html?guest=${encodeURIComponent(fullName)}`;
 
       document.getElementById("result").innerHTML = `
         <div class="result-item">
@@ -60,6 +153,50 @@
         </div>
       `;
     });
+
+    // === PHẦN 2: LẤY DANH SÁCH KHÁCH XÁC NHẬN ===
+    async function loadRSVP() {
+      try {
+        const res = await fetch("/api/rsvp");
+        const data = await res.json();
+
+        const tbody = document.querySelector("#rsvpTable tbody");
+        tbody.innerHTML = "";
+
+        if (data.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="4">Chưa có dữ liệu nào</td></tr>`;
+          return;
+        }
+
+        data.forEach((row) => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${row.id}</td>
+              <td>${row.name}</td>
+              <td>${row.attend}</td>
+              <td>${row.message}</td>
+            </tr>
+          `;
+        });
+      } catch (err) {
+        console.error(err);
+        alert("❌ Không thể tải danh sách! Kiểm tra lại server Node.js nhé.");
+      }
+    }
+
+    document.getElementById("refreshBtn").addEventListener("click", loadRSVP);
+
+    document.getElementById("exportBtn").addEventListener("click", async () => {
+      const res = await fetch("/api/export");
+      if (res.ok) {
+        alert("✅ Đã xuất file RSVP_List.xlsx thành công!");
+      } else {
+        alert("❌ Lỗi khi xuất file!");
+      }
+    });
+
+    // Tự động tải danh sách khi mở trang
+    loadRSVP();
   </script>
 </body>
 </html>

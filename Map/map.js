@@ -1,6 +1,6 @@
     document.addEventListener("DOMContentLoaded", () => {
-      const lat = 22.00909;
-      const lng = 102.78409;
+      const lat = 22.00835;
+      const lng = 102.78335;
       const address = "Gia đình nhà trai";
 
       // Khởi tạo bản đồ
